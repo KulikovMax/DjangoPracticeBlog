@@ -8,10 +8,19 @@
     <title>Home Page</title>
 </head>
 <body>
+<style>
+    label, input {
+        display: block;
+    }
+    span.helptext {
+        display: none;
+    }
+</style>
 {% block mainmenu %}
     <button><a href="{% url 'home' %}">Home</a></button>
     <button><a href="{% url 'blogs_main' %}">Blogs</a></button>
     <button><a href="{% url 'polls_main' %}">Polls</a></button>
+    <button><a href="{% url 'dashboard' %}">Users</a></button>
 {% endblock %}
 {% block content %}
 {% endblock %}
