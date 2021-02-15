@@ -1,12 +1,22 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import *
 
 
 def index(request):
-    questions = Question.objects.all()
+    questions_list = Question.objects.all()
+    paginator = Paginator(questions_list, 10)
+
+    page = request.GET.get('page')
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        questions = paginator.page(1)
+    except EmptyPage:
+        questions = paginator.page(paginator.num_pages)
     return render(request, 'polls/index.html', {'questions': questions})
 
 

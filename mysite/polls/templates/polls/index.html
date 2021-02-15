@@ -10,11 +10,21 @@
 </head>
 <body>
     {% block content %}
-        {% for q in questions %}
-            <h4>{{ q.text }}</h4>
-            <button><a href="{% url 'polls_detail' q.id %}">Answer</a></button>
+        {% for question in questions %}
+            <h4>{{ question.text }}</h4>
+            <button><a href="{% url 'polls_detail' question.id %}">Answer</a></button>
 
         {% endfor %}
+
+       <div class="pagination">
+       <span class="pages-links">
+           {% for page in questions.paginator %}
+               <a href="?page={{ page.number }}">{{ page.number }}</a>
+           {% endfor %}
+
+       </span>
+       </div>
+
     {% endblock %}
 </body>
 </html>
