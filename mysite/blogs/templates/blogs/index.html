@@ -9,14 +9,33 @@
     <title>Blogs Page</title>
 </head>
 <body>
+
 {% block content %}
+
     {% for p in posts %}
         <h3>{{ p.title }}</h3>
         <h4>{{ p.author }}</h4>
         <p>{{ p.text|truncatewords:50 }}</p>
-{#        <button><a href="{% url 'blogs_detail' p.id %}">More</a></button>#}
         <button><a href="{{ p.get_absolute_url }}">More</a></button>
     {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page={{ posts.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            </span>
+
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
 {% endblock %}
+
 </body>
 </html>
