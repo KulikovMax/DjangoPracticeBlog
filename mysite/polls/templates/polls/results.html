@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+{% block content %}
+    <h3>{{ question.text }}</h3>
+    <ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.text }}: {{ choice.votes }} votes</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+</body>
+</html>
