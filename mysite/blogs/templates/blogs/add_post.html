@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Post</title>
+</head>
+<body>
+    {% block content %}
+        <div id="contents">
+            <form action="{% url 'blogs_save_post' post.id %}" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Title" maxlength="100" name="post_title">
+                <h4>by {{ post.author }}</h4>
+                <textarea name="post_text" cols="30" rows="10" placeholder="Enter text here" id="post-text">
+                </textarea>
+                <br>
+                <input type="submit" value="Save post">
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Poll</title>
+</head>
+<body>
+    {% block content %}
+        <div id="contents">
+            <form action="{% url 'polls_save_poll' question.id %}"method="post">
+                {% csrf_token %}
+                <textarea name="question_text" cols="30" rows="3" placeholder="Question"></textarea><br>
+                <input type="text" placeholder="choice 1" name="choice_1"><br>
+                <input type="text" placeholder="choice 2" name="choice_2"><br>
+                <input type="submit" name="save_question">
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>

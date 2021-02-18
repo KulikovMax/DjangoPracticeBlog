@@ -1,0 +1,34 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Home Page</title>
+</head>
+<body>
+{#<style>#}
+{#    label, input {#}
+{#        display: block;#}
+{#    }#}
+{#    span.helptext {#}
+{#        display: none;#}
+{#    }#}
+{#</style>#}
+{% block mainmenu %}
+    <div id="menubar">
+        <button class="menu-btn"><a href="{% url 'home' %}">Home</a></button>
+        <button class="menu-btn"><a href="{% url 'blogs_main' %}">Blogs</a></button>
+        <button class="menu-btn"><a href="{% url 'polls_main' %}">Polls</a></button>
+        <button class="menu-btn"><a href="{% url 'dashboard' %}">Users</a></button>
+    </div>
+{% endblock %}
+{% block content %}
+{#    <div id="posts">#}
+{#    </div>#}
+{% endblock %}
+</body>
+</html>

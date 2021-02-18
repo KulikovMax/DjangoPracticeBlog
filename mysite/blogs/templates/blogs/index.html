@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blogs Page</title>
+</head>
+<body>
+    {% block content %}
+        <div id="contents">
+            <button ><a href="{% url 'blogs_add_post' %}">Add post</a></button>
+            {% for p in posts %}
+                <h3>{{ p.title }}</h3>
+                <h4>{{ p.author }}</h4>
+                <p>{{ p.text|truncatewords:50 }}</p>
+                <button><a href="{{ p.get_absolute_url }}">More</a></button>
+            {% endfor %}
+
+            <div class="pagination">
+        {#        <span class="step-links">#}
+        {#            {% if posts.has_previous %}#}
+        {#                <a href="?page={{ posts.previous_page_number }}">previous</a>#}
+        {#            {% endif %}#}
+        {##}
+        {#            <span class="current">#}
+        {#                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.#}
+        {#            </span>#}
+        {##}
+        {#            {% if posts.has_next %}#}
+        {#                <a href="?page={{ posts.next_page_number }}">next</a>#}
+        {#            {% endif %}#}
+        {#        </span>#}
+                <span class="pages-links">
+                    {% for page in posts.paginator %}
+                        <a href="?page={{ page.number }}">{{ page.number }}</a>
+                    {% endfor %}
+
+                </span>
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>

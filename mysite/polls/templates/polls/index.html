@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Polls Page</title>
+</head>
+<body>
+    {% block content %}
+        <div id="contents">
+            <button><a href="{% url 'polls_add_poll' %}">Add Poll</a></button>
+
+            {% for question in questions %}
+                <h4>{{ question.text }}</h4>
+                <button><a href="{% url 'polls_detail' question.id %}">Answer</a></button>
+
+            {% endfor %}
+
+           <div class="pagination">
+               <span class="pages-links">
+                   {% for page in questions.paginator %}
+                       <a href="?page={{ page.number }}">{{ page.number }}</a>
+                   {% endfor %}
+
+               </span>
+           </div>
+        </div>
+    {% endblock %}
+</body>
+</html>
